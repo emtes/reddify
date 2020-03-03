@@ -12,6 +12,14 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri: "https://emtes.github.io/test/main" 
 })
 spotifyApi.setAccessToken(token);
+  
+// Search artists whose name contains 'Love'
+spotifyApi.searchArtists('Love')
+.then(function(data) {
+  console.log('Search artists by "Love"', data.body);
+}, function(err) {
+  console.error(err);
+});
 
 // Get tracks in the signed in user's Your Music library
 spotifyApi.getMySavedTracks({
