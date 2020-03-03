@@ -13,7 +13,7 @@ var spotifyApi = new SpotifyWebApi({
 })
 spotifyApi.setAccessToken(token);
 
-// switch for Top
+// Get tracks in the signed in user's Your Music library
 spotifyApi.getMySavedTracks({
     limit : 2,
     offset: 1
