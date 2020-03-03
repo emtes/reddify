@@ -4,6 +4,7 @@ const token = params.get("#access_token");
 console.log(token);
 const lambda ='https://cors-anywhere.herokuapp.com/https://fpjbim7s0k.execute-api.us-east-2.amazonaws.com/default/reddifyMySpotify'
 
+
 //Get Users Top Song
 const getTopSong = (token) =>{
 	return fetch("https://api.spotify.com/v1/me/top/tracks", {
@@ -37,7 +38,9 @@ const getSongLyrics = (songInfo) =>{
 			body: lyrics
 		}),
 		headers:{
-			'Content-Type': ' application/json'
+			'Content-Type': ' application/json',
+			"Access-Control-Allow-Origin": "*"
+
 		}
 	})
 	console.log(await response.json())
@@ -48,3 +51,5 @@ const getSubreddits = async (keyword) =>{
 	return fetch(`https://cors-anywhere.herokuapp.com/http://api.reddit.com/r/?q=${keyword}`)
 		.then(info => console.log(info.json()))
 }
+
+console.log(getTopSong(token))
