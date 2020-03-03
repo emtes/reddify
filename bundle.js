@@ -9,6 +9,16 @@ console.log(token);
 var spotifyApi = new SpotifyWebApi()
 spotifyApi.setAccessToken(token);
 
+spotifyApi.getMySavedTracks({
+  limit : 2,
+  offset: 1
+})
+.then(function(data) {
+  console.log('Done!');
+}, function(err) {
+  console.log('Something went wrong!', err);
+});
+
 },{"spotify-web-api-node":5}],2:[function(require,module,exports){
 
 /**
