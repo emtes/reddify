@@ -2,7 +2,7 @@ console.log("Hello, world!");
 const params = new URLSearchParams(window.location.hash);
 const token = params.get("#access_token");
 console.log(token);
-const lambda ='https://cors-anywhere.herokuapp.com/https://ums5fyffj3.execute-api.us-east-1.amazonaws.com/default/enmanuel-mark'
+const lambda ='https://cors-anywhere.herokuapp.com/https://fpjbim7s0k.execute-api.us-east-2.amazonaws.com/default/reddifyMySpotify'
 
 //Get Users Top Song
 const getTopSong = (token) =>{
@@ -16,32 +16,31 @@ const getTopSong = (token) =>{
 	.then(track =>  getSongLyrics(track))
 }
 
-getTopSong('')
-
 //Song lyrics request
 const getSongLyrics = (songInfo) =>{
   console.log(songInfo)
-  let name = songInfo.name
-  let artist = songInfo.artists[0].name
-  return fetch(`https://api.lyrics.ovh/v1/${artist}/${name}`)
-  	.then(info => info.json().lyrics)
-  	.then(lyrics => console.log(lyrics))
-  	// .then(lyrics => makeRequest('POST',lambda, lyrics))
+   let song = songInfo.name
+   let artist = songInfo.artists[0].name
+  return fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`)
+  	.then(res => res.json())
+    .then(info => info.lyrics)
+  	.then(lyrics => makeRequest('POST',lambda, lyrics))
   	// .then(keyword => getSubreddits(keyword))
  }
 
+
 //Send response to lambda
- const makeRequest =  async (method,url,data) =>{
+ const makeRequest =  async (method,url,lyrics) =>{
 	const response = await fetch(url, {
 		method: method,
 		body: JSON.stringify({
-			data: data
+			body: lyrics
 		}),
 		headers:{
 			'Content-Type': ' application/json'
 		}
 	})
-	let lyrics = await response.json().body
+	console.log(await response.json())
 }
 
 //Request subreddits from reddit
