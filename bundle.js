@@ -13,12 +13,15 @@ var spotifyApi = new SpotifyWebApi({
 })
 spotifyApi.setAccessToken(token);
 
-// Search artists whose name contains 'Love'
-spotifyApi.searchArtists('Love')
+// switch for Top
+spotifyApi.getMySavedTracks({
+    limit : 2,
+    offset: 1
+  })
   .then(function(data) {
-    console.log('Search artists by "Love"', data.body);
+    console.log('Done!');
   }, function(err) {
-    console.error(err);
+    console.log('Something went wrong!', err);
   });
 
 },{"spotify-web-api-node":5}],2:[function(require,module,exports){
