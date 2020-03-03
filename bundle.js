@@ -6,7 +6,10 @@ const params = new URLSearchParams(window.location.hash);
 const token = params.get("#access_token");
 console.log(token);
 
-var spotifyApi = new SpotifyWebApi()
+var spotifyApi = new SpotifyWebApi({
+  clientId: "20072dfe69e4443ab2981969b901cbae",
+  clientSecret: "6e911053d5cf42f09fbd334d66594e49",
+})
 spotifyApi.setAccessToken(token);
 
 spotifyApi.getMySavedTracks({
