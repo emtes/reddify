@@ -10,22 +10,18 @@ REQUEST Query Parameters:
 `client_id`: required -- provided by Spotify for our application
 `response_type`: required -- set to "token"
 `redirect_uri`: required -- where to redirect after user grants/denies permissions
-+ More optional shit...
++ More optional stuff...
 
 IF user grants access:: final URL will contain **hash fragment** used for subsequent calls to Spotify
 */
 
 function toSpotifyAccServices() {
-  const curLoc = window.location;
   const creds = {
     client_id: "20072dfe69e4443ab2981969b901cbae",
     response_type: "token",
-    redirect_uri: ""
+    redirect_uri: "https%3A%2F%2Femtes.github.io%2Ftest%2F"
   };
 
-  let reqAuth = "https://accounts.spotify.com/authorize?";
-  for (let param in creds) {
-    param += "=";
-    reqAuth += param + creds[param] + "&";
-  }
+  let reqAuth = `https://accounts.spotify.com/authorize?client_id=${creds.client_id}&redirect_uri=${creds.redirect_uri}&response_type=${creds.response_type}`;
+  window.location = reqAuth;
 }
