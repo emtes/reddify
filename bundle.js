@@ -9,18 +9,17 @@ console.log(token);
 var spotifyApi = new SpotifyWebApi({
   clientId: "20072dfe69e4443ab2981969b901cbae",
   clientSecret: "6e911053d5cf42f09fbd334d66594e49",
+  redirectUri: "https://emtes.github.io/test/main" 
 })
 spotifyApi.setAccessToken(token);
 
-spotifyApi.getMySavedTracks({
-  limit : 2,
-  offset: 1
-})
-.then(function(data) {
-  console.log('Done!');
-}, function(err) {
-  console.log('Something went wrong!', err);
-});
+// Search artists whose name contains 'Love'
+spotifyApi.searchArtists('Love')
+  .then(function(data) {
+    console.log('Search artists by "Love"', data.body);
+  }, function(err) {
+    console.error(err);
+  });
 
 },{"spotify-web-api-node":5}],2:[function(require,module,exports){
 
