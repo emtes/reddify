@@ -12,25 +12,10 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri: "https://emtes.github.io/test/main" 
 })
 spotifyApi.setAccessToken(token);
-  
-// Search artists whose name contains 'Love'
-spotifyApi.searchArtists('Love')
-.then(function(data) {
-  console.log('Search artists by "Love"', data.body);
-}, function(err) {
-  console.error(err);
-});
 
-// Get tracks in the signed in user's Your Music library
-spotifyApi.getMySavedTracks({
-    limit : 2,
-    offset: 1
-  })
-  .then(function(data) {
-    console.log('Done!');
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
+function getTopTracks() {
+// use fetch with token
+}
 
 },{"spotify-web-api-node":5}],2:[function(require,module,exports){
 
