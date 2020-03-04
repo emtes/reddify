@@ -11,16 +11,17 @@ class Reddit {
   }
 
   static cleanCommunitiesResponse = function(communities) {
-    /*
-    keep:
-      display_name
-      display_name_prefixed
-      name
-      id
-      subscribers
-      description
-      over18
-      url
-    */
+    return communities.map((comm) => {
+      return {
+        commName: comm.display_name,
+        commNamePrefixed: comm.display_name_prefixed,
+        name: comm.name,
+        id: comm.id,
+        subscriberCount: comm.subscribers,
+        description: comm.description,
+        over18: comm.over18,
+        url: "https://www.reddit.com/" + comm.url,
+      }
+    })
   }
 }
