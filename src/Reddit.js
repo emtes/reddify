@@ -13,14 +13,14 @@ class Reddit {
   static cleanCommunitiesResponse = function(communities) {
     return communities.map((comm) => {
       return {
-        commName: comm.display_name,
-        commNamePrefixed: comm.display_name_prefixed,
-        name: comm.name,
-        id: comm.id,
-        subscriberCount: comm.subscribers,
-        description: comm.description,
-        over18: comm.over18,
-        url: "https://www.reddit.com/" + comm.url,
+        commName: comm.data.display_name,
+        commNamePrefixed: comm.data.display_name_prefixed,
+        name: comm.data.name,
+        id: comm.data.id,
+        subscriberCount: comm.data.subscribers,
+        description: comm.data.description,
+        over18: comm.data.over18,
+        url: "https://www.reddit.com/" + comm.data.url,
       }
     })
   }
