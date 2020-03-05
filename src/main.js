@@ -4,7 +4,7 @@ const getToken = () => {
   return token;
 };
 
-const getTopSong = async token => {
+const getTopSongs = async token => {
   const topSongEndpoint = "https://api.spotify.com/v1/me/top/tracks";
   const spotifyInit = {
     headers: {
@@ -17,20 +17,20 @@ const getTopSong = async token => {
   return tracks;
 };
 
-const getSongLyrics = async songInfo => {
-  let song = songInfo[0].name;
-  let artist = songInfo[0].artists[0].name;
-  let response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`);
+const getSongLyrics = async song => {
+  let songName = song.name;
+  let artist = song.artists[0].name;
+  let response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${songName}`);
   let json = await response.json();
   let lyrics = await json.lyrics;
   return lyrics;
 };
 
-const reqNounLamda = async lyrics => {
+const reqNounLamda = async text => {
   const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
   const lamdaEndpoint =
     "https://fpjbim7s0k.execute-api.us-east-2.amazonaws.com/default/reddifyMySpotify";
-  return makeRequest("POST", corsAnywhere + lamdaEndpoint, lyrics);
+  return makeRequest("POST", corsAnywhere + lamdaEndpoint, text);
 };
 
 const makeRequest = async (method, url, data) => {
@@ -47,4 +47,12 @@ const makeRequest = async (method, url, data) => {
   const response = await fetch(url, reqInit);
   const json = await response.json();
   return json;
+};
+
+const app = async () => {
+	const token = getToken()
+	const topSongs = await getTopSongs(token)
+
+	const lyrics = await getSongLyrics(topSongs[0])
+	console.log(await reqNounLamda(lyrics))
 };
