@@ -6,7 +6,7 @@ class Reddit {
     const queryUrl = `http://api.reddit.com/r/?q=${keyword}`;
     const res = await fetch(corsAnywhereUrl + queryUrl);
     const json = await res.json();
-    const communities = json.children;
+    const communities = json.data.children;
     return communities;
   };
 
