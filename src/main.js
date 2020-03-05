@@ -56,3 +56,5 @@ const app = async () => {
 	const lyrics = await getSongLyrics(topSongs[0])
 	console.log(await reqNounLamda(lyrics))
 };
+
+app();
