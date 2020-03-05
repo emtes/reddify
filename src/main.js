@@ -6,29 +6,26 @@ const lambda ='https://cors-anywhere.herokuapp.com/https://fpjbim7s0k.execute-ap
 
 
 //Get Users Top Song
-const getTopSong = (token) =>{
-	return fetch("https://api.spotify.com/v1/me/top/tracks", {
+const getTopSong = async (token) =>{
+	const response = await fetch("https://api.spotify.com/v1/me/top/tracks", {
 		headers: {
 		'Authorization': 'Bearer ' + token
 		}
 	})
-	.then(res => res.json())
-	.then(json => json.items[0])
-	.then(track =>  getSongLyrics(track))
+	const json = await response.json()
+	const track = await json.items
+	return await getSongLyrics(track)
 }
 
 //Song lyrics request
-const getSongLyrics = (songInfo) =>{
-  console.log(songInfo)
-   let song = songInfo.name
-   let artist = songInfo.artists[0].name
-  return fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`)
-  	.then(res => res.json())
-    .then(info => info.lyrics)
-  	.then(lyrics => makeRequest('POST',lambda, lyrics))
-  	// .then(keyword => getSubreddits(keyword))
+const getSongLyrics = async (songInfo) =>{
+   let song = songInfo[0].name
+   let artist = songInfo[0].artists[0].name
+   let response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`)
+   let json = await response.json()
+   let lyrics = await json.lyrics
+   return await makeRequest('POST',lambda, lyrics)
  }
-
 
 //Send response to lambda
  const makeRequest =  async (method,url,lyrics) =>{
@@ -43,13 +40,5 @@ const getSongLyrics = (songInfo) =>{
 
 		}
 	})
-	console.log(await response.json())
+	return await response.json()
 }
-
-//Request subreddits from reddit
-const getSubreddits = async (keyword) =>{
-	return fetch(`https://cors-anywhere.herokuapp.com/http://api.reddit.com/r/?q=${keyword}`)
-		.then(info => console.log(info.json()))
-}
-
-console.log(getTopSong(token))
