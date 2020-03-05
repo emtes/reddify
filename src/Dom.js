@@ -2,13 +2,12 @@ class Dom {
   constructor() {}
 
   static drawSongCards(songsArr) {
-    songsArr.forEach((song) => {
-      let cardHtml= ``;
-    })
-
+    songsArr.forEach(song => {
+      let cardHtml = ``;
+    });
   }
   static createRedditCard(obg) {
-  return `
+    return `
 	  <div class="card">
 	  <div class="card-image">
 	    <img src="img/osx-el-capitan.jpg" class="img-responsive">
@@ -24,6 +23,6 @@ class Dom {
 	    <button class="btn btn-primary">...</button>
 	  </div>
 	</div>
-  `
+  `;
   }
 }

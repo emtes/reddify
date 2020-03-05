@@ -49,10 +49,15 @@ const makeRequest = async (method, url, data) => {
   return json;
 };
 
-const app = async () => {
-	const token = getToken()
-	const topSongs = await getTopSongs(token)
-
-	const lyrics = await getSongLyrics(topSongs[0])
-	console.log(await reqNounLamda(lyrics))
+const recommendCommunities = async () => {
+  const token = getToken();
+  const topSongs = await getTopSongs(token);
+  const lyrics = await getSongLyrics(topSongs[0]); // switch to all
+  const keyword = await reqNounLamda(lyrics); // should be arr of words in final
+  const rawCommunities = await Reddit.getCommunitiesByKeyword(keyword);
+  console.log("Raw: ", rawCommunities);
+  const communities = await Reddit.cleanCommunitiesResponse(rawCommunities);
+  return communities;
 };
+
+recommendCommunities();
