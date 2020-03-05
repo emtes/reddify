@@ -1,44 +1,50 @@
-console.log("Hello, world!");
-const params = new URLSearchParams(window.location.hash);
-const token = params.get("#access_token");
-console.log(token);
-const lambda ='https://cors-anywhere.herokuapp.com/https://fpjbim7s0k.execute-api.us-east-2.amazonaws.com/default/reddifyMySpotify'
+const getToken = () => {
+  const params = new URLSearchParams(window.location.hash);
+  const token = params.get("#access_token");
+  return token;
+};
 
+const getTopSong = async token => {
+  const topSongEndpoint = "https://api.spotify.com/v1/me/top/tracks";
+  const spotifyInit = {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  };
+  const response = await fetch(topSongEndpoint, spotifyInit);
+  const json = await response.json();
+  const tracks = await json.items;
+  return tracks;
+};
 
-//Get Users Top Song
-const getTopSong = async (token) =>{
-	const response = await fetch("https://api.spotify.com/v1/me/top/tracks", {
-		headers: {
-		'Authorization': 'Bearer ' + token
-		}
-	})
-	const json = await response.json()
-	const track = await json.items
-	return await getSongLyrics(track)
-}
+const getSongLyrics = async songInfo => {
+  let song = songInfo[0].name;
+  let artist = songInfo[0].artists[0].name;
+  let response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`);
+  let json = await response.json();
+  let lyrics = await json.lyrics;
+  return lyrics;
+};
 
-//Song lyrics request
-const getSongLyrics = async (songInfo) =>{
-   let song = songInfo[0].name
-   let artist = songInfo[0].artists[0].name
-   let response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`)
-   let json = await response.json()
-   let lyrics = await json.lyrics
-   return await makeRequest('POST',lambda, lyrics)
- }
+const reqNounLamda = async lyrics => {
+  const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
+  const lamdaEndpoint =
+    "https://fpjbim7s0k.execute-api.us-east-2.amazonaws.com/default/reddifyMySpotify";
+  return makeRequest("POST", corsAnywhere + lamdaEndpoint, lyrics);
+};
 
-//Send response to lambda
- const makeRequest =  async (method,url,lyrics) =>{
-	const response = await fetch(url, {
-		method: method,
-		body: JSON.stringify({
-			body: lyrics
-		}),
-		headers:{
-			'Content-Type': ' application/json',
-			"Access-Control-Allow-Origin": "*"
-
-		}
-	})
-	return await response.json()
-}
+const makeRequest = async (method, url, data) => {
+  const reqInit = {
+    method: method,
+    body: JSON.stringify({
+      body: data
+    }),
+    headers: {
+      "Content-Type": " application/json",
+      "Access-Control-Allow-Origin": "*"
+    }
+  };
+  const response = await fetch(url, reqInit);
+  const json = await response.json();
+  return json;
+};
