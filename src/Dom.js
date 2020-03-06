@@ -10,17 +10,17 @@ class Dom {
     return `
 	  <div class="card">
 	  <div class="card-image">
-	    <img src="${card.data.community_icon}" class="img-responsive">
+	    <img src="${card.icon}" class="img-responsive">
 	  </div>
 	  <div class="card-header">
-	    <div class="card-title h5">${name}</div>
+	    <div class="card-title h5">${card.commNamePrefixed}</div>
 	    <div class="card-subtitle text-gray">${card.data.lifestyles}</div>
 	  </div>
 	  <div class="card-body">
-		${card.data.public_description}
+		${card.description}
 	  </div>
 	  <div class="card-footer">
-	    <button class="btn btn-primary"><a src="https://reddit.com/${commName}"></a></button>
+	    <button class="btn btn-primary"><a src="${card.url}"></a></button>
 	  </div>
 	</div>
   `;
