@@ -28,7 +28,8 @@ class Dom {
   static paintSubReddit(arr){
   	let paintArea = document.getElementById('cardArea')
   	arr.forEach(card =>{
-  		paintArea.innerHTML += Dom.createRedditCard(card)
+		let toAdd = Dom.createRedditCard(card)
+  		paintArea.innerHTML += toAdd
   	})
   }
 }
