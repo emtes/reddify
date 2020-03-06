@@ -6,14 +6,32 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/spectre.css" />
     <link rel="stylesheet" href="css/spectre-icons.css">
+    <link rel="stylesheet" href="css/override.css" />
     <link rel="icon" href="#" />
     <title>Some App</title>
   </head>
   <body>
-    <h1>Reddify My Spotify</h1>
-    <button class="button-primary" onclick="toSpotifyAccServices()">
-      Log In with Spotify
-    </button>
+    <main class="container">
+      <section class="sect">
+        <div class="panel column col-9">
+        <div class="panel-header">
+          <div class="panel-title">   
+            <h1>Reddify My Spotify</h1>
+          </div>
+          </div>
+        <div class="panel-nav">
+          <!-- navigation components: tabs, breadcrumbs or pagination -->
+        </div>
+          <div class="panel-body">
+            <!-- contents -->
+        </div>
+        <div class="panel-footer">
+          <button class="btn btn-primary"onclick="toSpotifyAccServices()">Log In with Spotify</button>    
+            </div>
+            <input class="form-input reddit-search col-6" type="text" id="input-example-1" placeholder="Search Reddit Itself">
+        </div>
+      </section>
+    </main>
     <script src="src/login.js"></script>
   </body>
 </html>

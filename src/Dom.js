@@ -26,10 +26,10 @@ class Dom {
   `;
   }
   static paintSubReddit(arr){
-  	let paintArea = document.getElementById('cardArea')
+  	let cardArea = document.getElementById('cardArea')
   	arr.forEach(card =>{
 		let toAdd = Dom.createRedditCard(card)
-  		paintArea.innerHTML += toAdd
+  		cardArea.innerHTML += toAdd
   	})
   }
 }
