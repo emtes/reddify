@@ -14,7 +14,7 @@ class Dom {
 	  </div>
 	  <div class="card-header">
 	    <div class="card-title h5">${card.commNamePrefixed}</div>
-	    <div class="card-subtitle text-gray">${card.data.lifestyles}</div>
+	    <div class="card-subtitle text-gray">Subscribers ${card.subscriberCount}</div>
 	  </div>
 	  <div class="card-body">
 		${card.description}
