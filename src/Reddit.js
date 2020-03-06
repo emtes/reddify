@@ -18,7 +18,7 @@ class Reddit {
         name: comm.data.name,
         id: comm.data.id,
         subscriberCount: comm.data.subscribers,
-        description: comm.data.description,
+        description: comm.data.public_description,
         over18: comm.data.over18,
         url: "https://www.reddit.com" + comm.data.url,
         icon: comm.data.icon_img

@@ -7,9 +7,6 @@ class Dom {
     });
   }
   static createRedditCard(card) {
-  	if(card.description.length() > 300){
-  		card.description = card.description.substr(0,300) + "etc..."
-  	}
     return `
 	  <div class="card column col-3">
 	  <div class="card-image">
@@ -23,7 +20,7 @@ class Dom {
 		${card.description}
 	  </div>
 	  <div class="card-footer">
-	    <button class="btn btn-primary"><a src="${card.url}">To Subreddit</a></button>
+	    <a href="${card.url}"><button class="btn btn-primary">To Subreddit</button></a>
 	  </div>
 	</div>
   `;
