@@ -58,7 +58,8 @@ const recommendCommunities = async () => {
   console.log("Raw: ", rawCommunities);
   const communities = await Reddit.cleanCommunitiesResponse(rawCommunities);
   console.log("Cleaned: ", communities)
-  return Dom.paintSubReddit(communities);
+  Dom.paintSubReddit(communities);
+  return communities
 };
 
 recommendCommunities();
