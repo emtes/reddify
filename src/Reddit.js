@@ -20,7 +20,8 @@ class Reddit {
         subscriberCount: comm.data.subscribers,
         description: comm.data.description,
         over18: comm.data.over18,
-        url: "https://www.reddit.com/" + comm.data.url
+        url: "https://www.reddit.com" + comm.data.url,
+        icon: comm.data.icon_img
       };
     });
   };
