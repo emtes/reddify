@@ -27,7 +27,7 @@ class Dom {
   }
   static paintSubReddit(arr){
   	let paintArea = document.getElementById('cardArea')
-  	return arr.forEach(card =>{
+  	arr.forEach(card =>{
   		paintArea.innerHTML += Dom.createRedditCard(card)
   	})
   }
