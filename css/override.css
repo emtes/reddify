@@ -30,3 +30,7 @@ main{
 .panel h1,.panel-body{
 	text-align: center
 }
+.cardArea{
+	width:55%;
+	margin-right:5%;
+}
