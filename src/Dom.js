@@ -1,21 +1,18 @@
 class Dom {
   constructor() {}
 
-  static createSongCard(songsArr) {
+  static createSongCard(song) {
   	return `
   	<div class="card column col-3">
 	  <div class="card-image">
-	    <img src="${card.icon}" class="img-responsive">
+	    <img src="${song.album.images[1]}" class="img-responsive">
 	  </div>
 	  <div class="card-header">
-	    <div class="card-title h5">${card.commNamePrefixed}</div>
-	    <div class="card-subtitle text-gray">Subscribers ${card.subscriberCount}</div>
+	    <div class="card-title h5">${song.name}</div>
+	    <div class="card-subtitle text-gray">Subscribers ${song.artist[0].name}</div>
 	  </div>
 	  <div class="card-body">
-		${card.description}
-	  </div>
-	  <div class="card-footer">
-	    <a href="${card.url}"><button class="btn btn-primary">To Subreddit</button></a>
+		From "${song.album.name}""
 	  </div>
 	</div>`
 
