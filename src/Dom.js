@@ -47,6 +47,7 @@ class Dom {
   	console.log(songs)
   	let songArea = document.getElementById('songArea')
   	let topSong = songs[0]
+  	console.log(topSong)
   	let toAdd = Dom.createSongCard(topSong)
   	songArea.innerHTML += toAdd
   }
