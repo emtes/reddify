@@ -5,11 +5,11 @@ class Dom {
   	return `
   	<div class="card column col-3">
 	  <div class="card-image">
-	    <img src="${song.album.images[1]}" class="img-responsive">
+	    <img src="${song.album.images[1].url}" class="img-responsive">
 	  </div>
 	  <div class="card-header">
 	    <div class="card-title h5">${song.name}</div>
-	    <div class="card-subtitle text-gray">Subscribers ${song.artists[0].name}</div>
+	    <div class="card-subtitle text-gray"><strong>Artist</strong> ${song.artists[0].name}</div>
 	  </div>
 	  <div class="card-body">
 		From "${song.album.name}"
