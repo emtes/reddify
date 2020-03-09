@@ -1,7 +1,7 @@
 class Dom {
   constructor() {}
 
-  static drawSongCards(songsArr) {
+  static createSongCard(songsArr) {
   	return `
   	<div class="card column col-3">
 	  <div class="card-image">
@@ -45,5 +45,10 @@ class Dom {
 		let toAdd = Dom.createRedditCard(card)
   		cardArea.innerHTML += toAdd
   	})
+  }
+  static paintSong(song){
+  	let songArea = document.getElementById('songArea')
+  	let toAdd = Dom.createSongCard(song)
+  	songArea.innerHTML += toAdd
   }
 }

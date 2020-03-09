@@ -51,9 +51,12 @@ const makeRequest = async (method, url, data) => {
 
 const recommendCommunities = async () => {
   const token = getToken();
-  const topSongs = await getTopSongs(token);
+  const topSongs = await getTopSongs(token)
+  console.log(topSongs[0]);
+  Dom.paintSong(topSongs[0]);
   const lyrics = await getSongLyrics(topSongs[0]); // switch to all
   const keyword = await reqNounLamda(lyrics); // should be arr of words in final
+  console.log(keyword)
   const rawCommunities = await Reddit.getCommunitiesByKeyword(keyword);
   console.log("Raw: ", rawCommunities);
   const communities = await Reddit.cleanCommunitiesResponse(rawCommunities);
