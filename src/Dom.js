@@ -3,7 +3,7 @@ class Dom {
 
   static createSongCard(song,keyword) {
   	return `
-  	<div class="card column col-3">
+  	<div class="card column col-6">
 	  <div class="card-image">
 	    <img src="${song.album.images[1].url}" class="img-responsive">
 	  </div>
