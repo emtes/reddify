@@ -12,6 +12,8 @@ main{
 }
 .card{
 	min-height:275px
+	margin-right:10px;
+	margin-top: 10px;
 }
 .reddit-search{
 	text-align: center;
@@ -31,6 +33,6 @@ main{
 	text-align: center
 }
 .cardArea{
-	width:55%;
+	width:60%;
 	margin-right:5%;
 }
