@@ -9,7 +9,7 @@ class Dom {
 	  </div>
 	  <div class="card-header">
 	    <div class="card-title h5">${song.name}</div>
-	    <div class="card-subtitle text-gray">Subscribers ${song.artist[0].name}</div>
+	    <div class="card-subtitle text-gray">Subscribers ${song.artists[0].name}</div>
 	  </div>
 	  <div class="card-body">
 		From "${song.album.name}"
