@@ -18,8 +18,8 @@ const getTopSongs = async token => {
 };
 
 const getSongLyrics = async song => {
-  let songName = song.name;
-  let artist = song.artists[0].name;
+  let songName = song[0].name;
+  let artist = song[0].artists[0].name;
   let response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${songName}`);
   let json = await response.json();
   let lyrics = await json.lyrics;
@@ -52,15 +52,13 @@ const makeRequest = async (method, url, data) => {
 const recommendCommunities = async () => {
   const token = getToken();
   const topSongs = await getTopSongs(token)
-  console.log(topSongs[0]);
-  const lyrics = await getSongLyrics(topSongs[0]); // switch to all
+  const lyrics = await getSongLyrics(topSongs); // switch to all
   const keyword = await reqNounLamda(lyrics); // should be arr of words in final
-  console.log(keyword)
   const rawCommunities = await Reddit.getCommunitiesByKeyword(keyword);
   console.log("Raw: ", rawCommunities);
   const communities = await Reddit.cleanCommunitiesResponse(rawCommunities);
   console.log("Cleaned: ", communities)
-  Dom.paintSong(await topSongs[0]);
+  Dom.paintSong(topSongs,keyword);
   Dom.paintSubReddit(communities);
   return communities
 };

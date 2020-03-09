@@ -1,7 +1,7 @@
 class Dom {
   constructor() {}
 
-  static createSongCard(song) {
+  static createSongCard(song,keyword) {
   	return `
   	<div class="card column col-3">
 	  <div class="card-image">
@@ -12,7 +12,7 @@ class Dom {
 	    <div class="card-subtitle text-gray">Subscribers ${song.artist[0].name}</div>
 	  </div>
 	  <div class="card-body">
-		From "${song.album.name}""
+		From "${song.album.name}"
 	  </div>
 	</div>`
 
@@ -43,9 +43,10 @@ class Dom {
   		cardArea.innerHTML += toAdd
   	})
   }
-  static paintSong(song){
+  static paintSong(song,keyword){
+  	console.log(song)
   	let songArea = document.getElementById('songArea')
-  	let toAdd = Dom.createSongCard(song)
+  	let toAdd = Dom.createSongCard(song[0])
   	songArea.innerHTML += toAdd
   }
 }
