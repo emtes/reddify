@@ -43,10 +43,11 @@ class Dom {
   		cardArea.innerHTML += toAdd
   	})
   }
-  static paintSong(song,keyword){
-  	console.log(song)
+  static paintSong(songs,keyword){
+  	console.log(songs)
   	let songArea = document.getElementById('songArea')
-  	let toAdd = Dom.createSongCard(song[0])
+  	let topSong = songs[0]
+  	let toAdd = Dom.createSongCard(topSong)
   	songArea.innerHTML += toAdd
   }
 }
