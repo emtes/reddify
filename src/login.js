@@ -2,7 +2,7 @@ function toSpotifyAccServices() {
   const creds = {
     client_id: "20072dfe69e4443ab2981969b901cbae",
     response_type: "token",
-    redirect_uri: "https%3A%2F%2Femtes.github.io%2Ftest%2Fmain.html",
+    redirect_uri: "https%3A%2F%2Femtes.github.io%2Freddify%2Fmain.html",
     scope: "user-top-read%20user-library-read"
   };
 
