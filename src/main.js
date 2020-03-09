@@ -53,7 +53,6 @@ const recommendCommunities = async () => {
   const token = getToken();
   const topSongs = await getTopSongs(token)
   console.log(topSongs[0]);
-  Dom.paintSong(topSongs[0]);
   const lyrics = await getSongLyrics(topSongs[0]); // switch to all
   const keyword = await reqNounLamda(lyrics); // should be arr of words in final
   console.log(keyword)
@@ -61,6 +60,7 @@ const recommendCommunities = async () => {
   console.log("Raw: ", rawCommunities);
   const communities = await Reddit.cleanCommunitiesResponse(rawCommunities);
   console.log("Cleaned: ", communities)
+  Dom.paintSong(await topSongs[0]);
   Dom.paintSubReddit(communities);
   return communities
 };
